@@ -9,29 +9,31 @@ sudo yum install -y psmisc util-linux coreutils xfsprogs e2fsprogs findutils \
   git wget bzip2 make automake gcc gcc-c++ kernel-devel perf blktrace lsof \
   redhat-lsb sysstat screen python-yaml ipmitool dstat zlib-devel ntp
 
-MIRROR="http://mirror.hmc.edu/fedora/linux/releases/24/Everything/x86_64/os/Packages"
+#MIRROR="http://mirror.hmc.edu/fedora/linux/releases/24/Everything/x86_64/os/Packages"
 
-wget ${MIRROR}/p/pdsh-2.31-6.fc24.x86_64.rpm
-wget ${MIRROR}/p/pdsh-2.31-6.fc24.x86_64.rpm
-wget ${MIRROR}/p/pdsh-rcmd-ssh-2.31-6.fc24.x86_64.rpm
-wget ${MIRROR}/c/collectl-4.0.2-3.fc24.noarch.rpm
-wget ${MIRROR}/i/iftop-1.0-0.11.pre4.fc24.x86_64.rpm
-wget ${MIRROR}/i/iperf3-3.1b3-2.fc24.x86_64.rpm
+#wget ${MIRROR}/p/pdsh-2.31-6.fc24.x86_64.rpm
+#wget ${MIRROR}/p/pdsh-2.31-6.fc24.x86_64.rpm
+#wget ${MIRROR}/p/pdsh-rcmd-ssh-2.31-6.fc24.x86_64.rpm
+#wget ${MIRROR}/c/collectl-4.0.2-3.fc24.noarch.rpm
+#wget ${MIRROR}/i/iftop-1.0-0.11.pre4.fc24.x86_64.rpm
+#wget ${MIRROR}/i/iperf3-3.1b3-2.fc24.x86_64.rpm
 
-sudo yum localinstall -y *.rpm
+#sudo yum localinstall -y *.rpm
 
-git clone https://github.com/axboe/fio.git
-git clone https://github.com/andikleen/pmu-tools.git
-git clone https://github.com/brendangregg/FlameGraph
+sudo yum install -y pdsh pdsh-rcmd-ssh collectl iftop iperf3 fio
 
-cd fio
-./configure
-make
+#git clone https://github.com/axboe/fio.git
+#git clone https://github.com/andikleen/pmu-tools.git
+#git clone https://github.com/brendangregg/FlameGraph
+
+#cd fio
+#./configure
+#make
 
 # wget < Red Hat Ceph Storage ISO URL >
 # sudo mount -o loop Ceph-*-dvd.iso /mnt
-sudo yum localinstall -y /mnt/{MON,OSD}/*.rpm
-sudo yum localinstall -y /mnt/Installer/ceph-deploy-*.rpm
+#sudo yum localinstall -y /mnt/{MON,OSD}/*.rpm
+#sudo yum localinstall -y /mnt/Installer/ceph-deploy-*.rpm
 
 sudo sed -i 's/Defaults    requiretty/#Defaults    requiretty/g' /etc/sudoers
 sudo setenforce 0
